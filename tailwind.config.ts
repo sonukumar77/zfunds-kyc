@@ -19,7 +19,7 @@ const config: Config = {
         "secondary":"#EFF3F6",
         "gray-100":"#CDD5DF",
         "gray-150":"#8E959F",
-        "green-100":"#3A87C",
+        "green-100":"#03A87C",
       }
     },
   },

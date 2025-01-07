@@ -7,13 +7,13 @@ interface ButtonProps {
 
 const Button = ({
   btnText,
-  btnStyle,
+  btnStyle = "",
   onBtnClick,
   isDisabled = false,
 }: ButtonProps) => {
   return (
     <button
-      className={`bg-primary-100 text-white px-4 py-2 rounded-md cursor-pointer font-bold ${
+      className={`bg-primary-100 px-4 py-2 rounded-md cursor-pointer font-bold ${
         isDisabled ? "bg-primary-10" : ""
       } ${btnStyle}`}
       disabled={isDisabled}

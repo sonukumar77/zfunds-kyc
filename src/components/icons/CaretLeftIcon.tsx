@@ -7,7 +7,7 @@ interface CaretLeftIconProps {
 
 const CaretLeftIcon = ({ svgProps, pathProps }: CaretLeftIconProps) => {
   return (
-    <svg width="800" height="800" viewBox="0 0 24 24" {...svgProps}>
+    <svg viewBox="0 0 24 24" {...svgProps}>
       <path
         d="m14 8-4 4 4 4"
         stroke="#200E32"
