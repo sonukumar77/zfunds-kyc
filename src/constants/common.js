@@ -20,13 +20,57 @@ export const DECLARTION_LIST = [
   {
     id: 1,
     title: "Indian citizen",
+    name: "isIndianCitizen",
   },
   {
     id: 2,
     title: "Indian tax resident.",
+    name: "isIndianTaxResident",
   },
   {
     id: 3,
     title: "Not politically exposed.",
+    name: "isNotPoliticallyExpose",
   },
 ];
+
+export const RANDOM_USER_URL = "https://randomuser.me/api/portraits/men/90.jpg";
+
+export const FAKE_USER_DATA = {
+  userDetails: [
+    {
+      title: "Pan Card No.",
+      value: "Indian Citizen",
+    },
+    {
+      title: "Name",
+      value: "Tanvi Yadav",
+    },
+  ],
+  personalDetails: [
+    {
+      title: "Gender",
+      value: "Female",
+    },
+    {
+      title: "Date Of Birth",
+      value: "12/10/2000",
+    },
+    {
+      title: "Adresss",
+      value: "250 falt No.,second floor,Sector 57,Sushant Lok Phase 2",
+    },
+    {
+      title: "Pincode",
+      value: "122003",
+    },
+  ],
+
+  KYCDetails: [],
+  DocumentDetails: [
+    {
+      title: "Photo",
+      value: RANDOM_USER_URL,
+    },
+  ],
+};

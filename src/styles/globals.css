@@ -3,7 +3,7 @@
 @tailwind utilities;
 
 :root {
-  --primary: #052F5F;
+  --primary: #052f5f;
 }
 
 @media (prefers-color-scheme: dark) {
@@ -17,4 +17,8 @@
 body {
   font-weight: 500;
   color: var(--primary);
+}
+
+img {
+  height: 100%;
 }

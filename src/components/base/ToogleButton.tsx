@@ -1,10 +1,14 @@
-import React, { useState } from "react";
-
-const ToggleButton = () => {
-  const [isToggled, setIsToggled] = useState(false);
+const ToggleButton = ({ name, inputData, handleInputs }) => {
+  const isToggled = inputData[name] || false;
 
   const toggleButton = () => {
-    setIsToggled(!isToggled);
+    const inputEvent = {
+      target: {
+        name: name,
+        value: !isToggled,
+      },
+    };
+    handleInputs(inputEvent);
   };
 
   return (
@@ -18,7 +22,7 @@ const ToggleButton = () => {
         className={`w-6 h-6 bg-white rounded-full shadow-md transform ${
           isToggled ? "translate-x-6" : "translate-x-0"
         } transition-transform duration-300`}
-      ></div>
+      />
     </button>
   );
 };

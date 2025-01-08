@@ -5,6 +5,7 @@ interface RadioInput {
   selected: string;
   radioContainerStyle?: string;
   labelText?: string;
+  name?: string;
   labelStyle?: string;
   radioOptionStyle?: string;
   onChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
@@ -15,6 +16,7 @@ const RadioInput = ({
   selected,
   labelStyle = "",
   labelText,
+  name,
   onChange,
   radioContainerStyle = "",
   radioOptionStyle = "",
@@ -35,6 +37,7 @@ const RadioInput = ({
                 checked={selected === value}
                 className="cursor-pointer"
                 id={`${value}${index}`}
+                name={name}
               />
               <label
                 className="text-center cursor-pointer"

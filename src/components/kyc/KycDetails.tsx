@@ -1,55 +1,47 @@
-import { ReactNode } from "react";
-import PencilIcon from "../icons/PencilIcon";
-interface CardProps {
-  cardHeader?: ReactNode;
-  cardFooter?: ReactNode;
-  children?: ReactNode;
+import { useState } from "react";
+import { INITIAL_KYC_DATA } from "@/pages";
+import { FAKE_USER_DATA } from "@/constants/common";
+import { ImagePlaceholder } from "./UploadDocuments";
+import { findIncomeLabel } from "@/utils/kycData";
+import Card from "../base/Card";
+import RowData from "../base/RowData";
+
+interface KycDetails {
+  inputData: INITIAL_KYC_DATA;
 }
 
-const Card = ({ children, cardFooter, cardHeader }: CardProps) => {
-  return (
-    <div className="border-2 border-gray-100 rounded-xl">
-      {/* card header */}
-      <div className="flex justify-between items-center p-4">
-        <label className="text-primary-100">User Details.</label>
-        <div className="text-green-100 flex ">
-          <span>Edit</span>
-          <PencilIcon
-            svgProps={{
-              width: 24,
-              height: 24,
-              cursor: "pointer",
-              fill: "#03A87C",
-            }}
-          />
-        </div>
-      </div>
-      {/* card body */}
-      {children}
-    </div>
-  );
-};
+// interface ListProps{
+//   title:string
+//   value:string
+// }
 
-const RowData = () => {
+const List = ({ arrList }) => {
   return (
     <>
-      {Array(4)
-        .fill(undefined)
-        .map((_, i) => (
-          <div className="px-4 py-1" key={i}>
-            <p className="text-gray-100 text-sm font-normal">Pan Card Number</p>
-            <p className="text-lg">Sonu Kumar</p>
-          </div>
-        ))}
+      {arrList.map((items: ListProps, i: string) => (
+        <RowData key={i} {...items} />
+      ))}
     </>
   );
 };
 
-const KycDetails = () => {
+const KycDetails = ({ inputData }: KycDetails) => {
+  const [isChecked, setIsChecked] = useState(false);
+
+  const {
+    maritalStatus,
+    fatherName,
+    motherName,
+    email,
+    income,
+    panImage,
+    signImage,
+  } = inputData;
+
   return (
     <div className="space-y-4">
-      <Card>
-        <RowData />
+      <Card cardHeaderTitle="User Details">
+        <List arrList={FAKE_USER_DATA.userDetails} />
         <div className="bg-secondary p-4">
           <p className="text-sm">
             <span className="text-lg">Note:</span> You can not edit above
@@ -57,11 +49,61 @@ const KycDetails = () => {
           </p>
         </div>
       </Card>
-      <Card>
-        <RowData />
+      <Card cardHeaderTitle="Personal Details">
+        <div className="pb-2">
+          <List arrList={FAKE_USER_DATA.personalDetails} />
+        </div>
+      </Card>
+      <Card cardHeaderTitle="KYC Details">
+        <RowData title="Email" value={email} />
+        <div className="flex justify-between">
+          <RowData title="Marital Status" value={maritalStatus} />
+          <RowData title="Annual Income" value={findIncomeLabel(income)} />
+        </div>
+        <div className="flex justify-between pb-2">
+          <RowData title="Father's Name" value={fatherName} />
+          <RowData title="Mother's Name" value={motherName} />
+        </div>
+      </Card>
+      <Card cardHeaderTitle="Documents">
+        <div className="py-2 flex justify-between items-center p-2">
+          <div className="flex justify-center items-center flex-col gap-2">
+            <p>Photo</p>
+            <ImagePlaceholder
+              imageUrl={FAKE_USER_DATA.DocumentDetails[0].value}
+              altText="User Photo"
+              containerStyle="m-0"
+            />
+          </div>
+          {panImage && (
+            <div className="flex justify-center items-center flex-col gap-2">
+              <p>PAN</p>
+              <ImagePlaceholder
+                imageUrl={panImage}
+                altText="PAn Image"
+                containerStyle="m-0"
+              />
+            </div>
+          )}
+          {signImage && (
+            <div className="flex justify-center items-center flex-col gap-2">
+              <p>Signature</p>
+              <ImagePlaceholder
+                imageUrl={signImage}
+                altText="Sign Image"
+                containerStyle="m-0"
+              />
+            </div>
+          )}
+        </div>
       </Card>
       <div className="flex items-center">
-        <input type="checkbox" className="w-4 h-4 cheecked:bg-green-100" />
+        <input
+          type="checkbox"
+          className="w-4 h-4 cheecked:bg-green-100"
+          checked={isChecked}
+          onChange={() => setIsChecked((prev) => !prev)}
+        />
         <label htmlFor="" className="text-primary-10 ml-2">
           I agree to the
           <span className="text-primary-100 text-bold">

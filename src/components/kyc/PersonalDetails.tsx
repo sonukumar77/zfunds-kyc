@@ -4,46 +4,43 @@ import {
   INCOME_LIST,
   EMAIL_SUBDOMAINS,
 } from "../../constants/common.js";
-import { useState } from "react";
 import InputBox from "../base/InputBox";
 import Button from "../base/Button";
-import FormHeader from "./FormHeader";
-import UploadDocuments from "./UploadDocuments";
-import DeclarationDetails from "./DeclarationDetails";
 
-const PersonalDetails = () => {
-  const [gender, setGender] = useState<string>(MARITAL_STATUS_LIST[0].value);
-  const [income, setIncome] = useState<string>(INCOME_LIST[0].value);
-
-  const onRadioChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setGender(e.target.value);
-  };
+const PersonalDetails = ({ inputData, handleInputs }) => {
   return (
     <>
       <RadioInput
         radioList={MARITAL_STATUS_LIST}
-        selected={gender}
-        onChange={onRadioChange}
+        selected={inputData.maritalStatus}
+        onChange={handleInputs}
         labelText="Maritial Status"
+        name="maritalStatus"
       />
       <InputBox
         inputType="text"
         labelText="Father's Name"
-        onInputChange={() => null}
+        onInputChange={handleInputs}
         placeholder="Enter Father's name here"
+        name="fatherName"
+        initialValue={inputData.fatherName}
       />
       <InputBox
         inputType="text"
         labelText="Mothers's Name"
-        onInputChange={() => null}
+        onInputChange={handleInputs}
         placeholder="Enter Mother's name here"
+        name="motherName"
+        initialValue={inputData.motherName}
       />
       <InputBox
         inputType="email"
         labelText="Email"
-        onInputChange={() => null}
+        onInputChange={handleInputs}
         placeholder="|@gmail.com"
         inputStyle="placeholder:text-primary-100"
+        name="email"
+        initialValue={inputData.email}
       >
         <small className="text-gray-150">
           you will recieve portfolio statements on this email id
@@ -61,10 +58,11 @@ const PersonalDetails = () => {
       </InputBox>
       <RadioInput
         radioList={INCOME_LIST}
-        selected={income}
-        onChange={(e) => setIncome(e.target.value)}
+        selected={inputData.income}
+        onChange={handleInputs}
         labelText="Maritial Status"
         radioOptionStyle="flex-col"
+        name="income"
       />
     </>
   );
