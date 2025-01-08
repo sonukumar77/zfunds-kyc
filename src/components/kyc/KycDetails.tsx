@@ -1,32 +1,40 @@
 import { useState } from "react";
-import { INITIAL_KYC_DATA } from "@/pages";
-import { FAKE_USER_DATA } from "@/constants/common";
+import { FAKE_USER_DATA, INITIAL_KYC_DATA } from "@/constants/common";
 import { ImagePlaceholder } from "./UploadDocuments";
 import { findIncomeLabel } from "@/utils/kycData";
 import Card from "../base/Card";
 import RowData from "../base/RowData";
+import { INITIAL_KYC_DATA_Props } from "@/models/kyc";
 
-interface KycDetails {
-  inputData: INITIAL_KYC_DATA;
+interface KycDetailsProps {
+  inputData: INITIAL_KYC_DATA_Props | null;
 }
 
-// interface ListProps{
-//   title:string
-//   value:string
-// }
+interface RowProps {
+  title: string;
+  value: string;
+}
 
-const List = ({ arrList }) => {
+interface ListProps {
+  arrList: RowProps[];
+}
+
+const List = ({ arrList }: ListProps) => {
   return (
     <>
-      {arrList.map((items: ListProps, i: string) => (
+      {arrList.map((items, i) => (
         <RowData key={i} {...items} />
       ))}
     </>
   );
 };
 
-const KycDetails = ({ inputData }: KycDetails) => {
+const KycDetails = ({ inputData }: KycDetailsProps) => {
   const [isChecked, setIsChecked] = useState(false);
+
+  if (!inputData) {
+    return <div>Loading...</div>; // Or handle accordingly
+  }
 
   const {
     maritalStatus,
@@ -58,7 +66,7 @@ const KycDetails = ({ inputData }: KycDetails) => {
         <RowData title="Email" value={email} />
         <div className="flex justify-between">
           <RowData title="Marital Status" value={maritalStatus} />
-          <RowData title="Annual Income" value={findIncomeLabel(income)} />
+          <RowData title="Annual Income" value={income} />
         </div>
         <div className="flex justify-between pb-2">
           <RowData title="Father's Name" value={fatherName} />

@@ -1,4 +1,4 @@
-import { useState } from "react";
+import React, { useState } from "react";
 import Header from "@/components/Header";
 import PersonalDetails from "@/components/kyc/PersonalDetails";
 import UploadDocuments from "@/components/kyc/UploadDocuments";
@@ -18,7 +18,7 @@ export default function Home() {
   const handleInputs = (
     e:
       | React.ChangeEvent<HTMLInputElement>
-      | { target: { name: string; value: boolean } }
+      | { target: { name: string; value: string | boolean } }
   ) => {
     const { name, value } = e.target;
     if (!inputData) return;
@@ -85,7 +85,7 @@ export default function Home() {
         >
           {inputData ? (
             <>
-              <div className="p-4 flex flex-col gap-4">
+              <div className="p-4 mb-32 flex flex-col gap-4">
                 <FormHeader
                   heading={KYC_STEPS[currentIndex].heading}
                   subheading={KYC_STEPS[currentIndex].subHeading}
@@ -93,24 +93,26 @@ export default function Home() {
                 />
                 {KYC_STEPS[currentIndex]?.component}
 
-                {currentIndex < KYC_STEPS.length - 1 ? (
+                <div className="flex flex-col gap-1 fixed bottom-0 left-0 w-full z-50 p-4 shadow-lg bg-white">
+                  {currentIndex < KYC_STEPS.length - 1 ? (
+                    <Button
+                      btnText="Next"
+                      onBtnClick={() => setCurrentIndex((prev) => prev + 1)}
+                      btnStyle="text-white"
+                    />
+                  ) : (
+                    <Button
+                      btnText="Submit"
+                      onBtnClick={handleSubmit}
+                      btnStyle="text-white"
+                    />
+                  )}
                   <Button
-                    btnText="Next"
-                    onBtnClick={() => setCurrentIndex((prev) => prev + 1)}
-                    btnStyle="text-white"
+                    btnText="Skip For Now"
+                    onBtnClick={() => null}
+                    btnStyle="text-gray-150 bg-white"
                   />
-                ) : (
-                  <Button
-                    btnText="Submit"
-                    onBtnClick={handleSubmit}
-                    btnStyle="text-white"
-                  />
-                )}
-                <Button
-                  btnText="Skip For Now"
-                  onBtnClick={() => null}
-                  btnStyle="text-gray-150 bg-white"
-                />
+                </div>
               </div>
             </>
           ) : (

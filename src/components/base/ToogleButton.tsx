@@ -1,16 +1,20 @@
 import { INITIAL_KYC_DATA_Props } from "@/models/kyc";
+import React from "react";
 
 interface ToggleButtonProps {
-  name: string;
+  name: keyof INITIAL_KYC_DATA_Props | null;
   inputData: INITIAL_KYC_DATA_Props;
   handleInputs: (
     e:
       | React.ChangeEvent<HTMLInputElement>
-      | { target: { name: string; value: boolean } }
+      | { target: { name: string; value: string | boolean } }
   ) => void;
 }
 
 const ToggleButton = ({ name, inputData, handleInputs }: ToggleButtonProps) => {
+  if (!inputData || name === null) {
+    return <div>Loading...</div>;
+  }
   const isToggled = inputData[name] || false;
 
   const toggleButton = () => {

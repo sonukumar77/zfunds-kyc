@@ -6,8 +6,18 @@ import {
 } from "../../constants/common.js";
 import InputBox from "../base/InputBox";
 import Button from "../base/Button";
+import { INITIAL_KYC_DATA_Props } from "@/models/kyc";
+import React from "react";
 
-const PersonalDetails = ({ inputData, handleInputs }) => {
+interface PersonalDetailsProps {
+  inputData: INITIAL_KYC_DATA_Props | null;
+  handleInputs: (e: React.ChangeEvent<HTMLInputElement>) => void;
+}
+
+const PersonalDetails = ({ inputData, handleInputs }: PersonalDetailsProps) => {
+  if (!inputData) {
+    return <div>Loading...</div>;
+  }
   return (
     <>
       <RadioInput

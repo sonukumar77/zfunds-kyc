@@ -16,24 +16,6 @@ export const EMAIL_SUBDOMAINS = [
   "@rediffmail.com",
 ];
 
-export const DECLARTION_LIST = [
-  {
-    id: 1,
-    title: "Indian citizen",
-    name: "isIndianCitizen",
-  },
-  {
-    id: 2,
-    title: "Indian tax resident.",
-    name: "isIndianTaxResident",
-  },
-  {
-    id: 3,
-    title: "Not politically exposed.",
-    name: "isNotPoliticallyExpose",
-  },
-];
-
 export const RANDOM_USER_URL = "https://randomuser.me/api/portraits/men/90.jpg";
 
 export const FAKE_USER_DATA = {

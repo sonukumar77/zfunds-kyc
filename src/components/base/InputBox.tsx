@@ -1,4 +1,4 @@
-import { ReactNode } from "react";
+import React, { ReactNode } from "react";
 
 interface InputBoxProps {
   name?: string;
@@ -10,7 +10,7 @@ interface InputBoxProps {
   inputContainerStyle?: string;
   labelStyle?: string;
   children?: ReactNode;
-  onInputChange: () => void;
+  onInputChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
 }
 
 const InputBox = ({

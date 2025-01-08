@@ -2,13 +2,13 @@ import { useRef, useState } from "react";
 import Image from "next/image";
 
 interface UploadDocumentsProps {
-  handleInputs: (e: React.ChangeEvent<HTMLInputElement>) => void;
+  handleInputs: (e: { target: { name: string; value: string } }) => void;
 }
 
 interface DocumentsProps {
   title: string;
   description: string;
-  imageRef: HTMLImageElement;
+  imageRef: React.RefObject<HTMLInputElement>;
   imageUrl: string;
   altText: string;
 }
@@ -50,7 +50,7 @@ const Documents = ({
   return (
     <div
       className="flex justify-between items-center border-b-2 border-gray-100"
-      onClick={() => imageRef.current.click()}
+      onClick={() => imageRef.current?.click()}
     >
       <div className="w-1/2 flex flex-col">
         <label className={`text-primary-100`}>{title}</label>
@@ -71,7 +71,7 @@ const UploadDocuments = ({ handleInputs }: UploadDocumentsProps) => {
   const [panImage, setPanImages] = useState("");
   const [signImage, setSignImages] = useState("");
 
-  const handlePanImage = (e) => {
+  const handlePanImage = (e: React.ChangeEvent<HTMLInputElement>) => {
     if (e.target.files?.length === 1) {
       const file = e.target.files[0];
       const url = URL.createObjectURL(file);
@@ -81,10 +81,10 @@ const UploadDocuments = ({ handleInputs }: UploadDocumentsProps) => {
           name: "panImage",
           value: url,
         },
-      });
+      } as React.ChangeEvent<HTMLInputElement>);
     }
   };
-  const handleSignImage = (e) => {
+  const handleSignImage = (e: React.ChangeEvent<HTMLInputElement>) => {
     if (e.target.files?.length === 1) {
       const file = e.target.files[0];
       const url = URL.createObjectURL(file);
@@ -94,7 +94,7 @@ const UploadDocuments = ({ handleInputs }: UploadDocumentsProps) => {
           name: "signImage",
           value: url,
         },
-      });
+      } as React.ChangeEvent<HTMLInputElement>);
     }
   };
 
