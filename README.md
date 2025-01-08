@@ -1,40 +1,95 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# ZFunds KYC
 
-## Getting Started
+Welcome to the ZFunds KYC App! This Next Js application allows users to fill the KYC Form for investments and Mutual Funds.
 
-First, run the development server:
+## Table of Contents
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+- [Features](#features)
+- [Installation](#installation)
+- [Usage](#usage)
+- [Hosted Link](#hosted-link)
+- [Screenshots](#screenshots)
+- [Project Structure](#project-structure)
+- [Dependencies](#dependencies)
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## Features
 
-You can start editing the page by modifying `pages/index.tsx`. The page auto-updates as you edit the file.
+- `Multi-Step KYC Forms`: The app allows users to fill Personal informaton,Uploads documents etc.
+- `UI Enhancements`:The app includes custom components like Cards,Inputboxs etc.
+- `Manual Navigation Controls`: Users can manually navigate between next steps using intuitive UI controls.
 
-[API routes](https://nextjs.org/docs/api-routes/introduction) can be accessed on [http://localhost:3000/api/hello](http://localhost:3000/api/hello). This endpoint can be edited in `pages/api/hello.ts`.
+## Installation
 
-The `pages/api` directory is mapped to `/api/*`. Files in this directory are treated as [API routes](https://nextjs.org/docs/api-routes/introduction) instead of React pages.
+1. Clone the repository:
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+   ```bash
+   git clone https://github.com/sonukumar77/zfunds-kyc.git
 
-## Learn More
+   ```
 
-To learn more about Next.js, take a look at the following resources:
+2. Navigate to the project folder:
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+   ```bash
+   cd zfunds-kyc
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+   ```
 
-## Deploy on Vercel
+3. Install dependencies:
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+   ```bash
+   npm install
+   ```
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+## Usage
+
+1. Start the development server::
+
+   ```bash
+   npm run dev
+
+   ```
+
+2. Open your browser and visit http://localhost:3000.
+
+3. Explore the ZFunds KYC App!
+
+## Hosted Link
+
+Visit the hosted application: [ZFunds KYC App](https://zfundskyc.vercel.app/)
+
+## Screenshots
+
+![image](https://github.com/sonukumar77/zfunds-kyc/blob/main/public/assets/images/sc1.png)
+
+---
+
+![image](https://github.com/sonukumar77/zfunds-kyc/blob/main/public/assets/images/sc2.png)
+
+---
+
+## ![image](https://github.com/sonukumar77/zfunds-kyc/blob/main/public/assets/images/sc3.png)
+
+## ![image](https://github.com/sonukumar77/zfunds-kyc/blob/main/public/assets/images/sc4.png)
+
+![image](https://github.com/sonukumar77/zfunds-kyc/blob/main/public/assets/images/sc5.png)
+
+## Project Structure
+
+- `/src`: Contains the source code for the Next Js application.
+- `/src/components`: Reusable React components.
+- `/src/components/icons`: Reusable React Icons components.
+- `/src/components/base`: Reusable components.
+- `/src/models`: For Typescript Models.
+- `/src/pages`: Top-level pages of the application.
+- `/src/styles`: CSS styles for the application.
+- `/src/utils`: Utility functions and API-related functions.
+- `/src/constants.js`: For constants.
+- `/public/assets`: Images,and other assets.
+
+## Dependencies
+
+- Next Js
+- React Js
+- Typescript
+- Tailwind CSS
+- Other dependencies based on your specific components and features
