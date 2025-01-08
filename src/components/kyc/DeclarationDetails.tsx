@@ -1,9 +1,14 @@
+import { INITIAL_KYC_DATA_Props } from "@/models/kyc";
 import ToggleButton from "../base/ToogleButton";
 import { DECLARTION_LIST } from "@/constants/common.js";
 
 export interface DectaDetailsProps {
-  inputData: string;
-  handleInputs: () => void;
+  inputData: INITIAL_KYC_DATA_Props;
+  handleInputs: (
+    e:
+      | React.ChangeEvent<HTMLInputElement>
+      | { target: { name: string; value: boolean } }
+  ) => void;
 }
 
 const DeclarationDetails = (props: DectaDetailsProps) => {

@@ -6,40 +6,21 @@ import DeclarationDetails from "@/components/kyc/DeclarationDetails";
 import Button from "@/components/base/Button";
 import FormHeader from "@/components/kyc/FormHeader";
 import KycDetails from "@/components/kyc/KycDetails";
-
-export interface INITIAL_KYC_DATA {
-  maritalStatus: string;
-  fatherName: string;
-  motherName: string;
-  email: string;
-  income: string;
-  isIndianCitizen: boolean;
-  isIndianTaxResident: boolean;
-  isNotPoliticallyExpose: boolean;
-  panImage: string;
-  signImage: string;
-}
-
-const INITIAL_KYC_DATA = {
-  maritalStatus: "",
-  fatherName: "",
-  motherName: "",
-  email: "",
-  income: "",
-  isIndianCitizen: false,
-  isIndianTaxResident: false,
-  isNotPoliticallyExpose: false,
-  panImage: "",
-  signImage: "",
-};
+import { INITIAL_KYC_DATA_Props } from "@/models/kyc";
+import { INITIAL_KYC_DATA } from "@/constants/common";
 
 export default function Home() {
-  const [inputData, setInputData] = useState<INITIAL_KYC_DATA | null>(null);
+  const [inputData, setInputData] = useState<INITIAL_KYC_DATA_Props | null>(
+    null
+  );
   const [currentIndex, setCurrentIndex] = useState(0);
 
-  const handleInputs = (e: React.ChangeEvent<HTMLInputElement>) => {
+  const handleInputs = (
+    e:
+      | React.ChangeEvent<HTMLInputElement>
+      | { target: { name: string; value: boolean } }
+  ) => {
     const { name, value } = e.target;
-
     if (!inputData) return;
 
     setInputData((prev) =>
@@ -60,9 +41,7 @@ export default function Home() {
     },
     {
       id: 2,
-      component: (
-        <UploadDocuments inputData={inputData} handleInputs={handleInputs} />
-      ),
+      component: <UploadDocuments handleInputs={handleInputs} />,
       heading: "Documents",
       subHeading: "Upload Documents",
       description:
@@ -96,13 +75,14 @@ export default function Home() {
   return (
     <main className="min-h-screen relative bg-gray-150">
       <Header />
-
       <section
         className={`bg-white w-full min-h-screen max-w-[500px] mx-auto ${
           !inputData ? "flex justify-center items-center" : ""
         }`}
       >
-        <div className="border-t-4 border-gray-100 mt-16">
+        <div
+          className={`${inputData ? "border-t-4 border-gray-100 mt-16" : ""}`}
+        >
           {inputData ? (
             <>
               <div className="p-4 flex flex-col gap-4">
@@ -126,7 +106,6 @@ export default function Home() {
                     btnStyle="text-white"
                   />
                 )}
-
                 <Button
                   btnText="Skip For Now"
                   onBtnClick={() => null}

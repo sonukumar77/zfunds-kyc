@@ -74,3 +74,16 @@ export const FAKE_USER_DATA = {
     },
   ],
 };
+
+export const INITIAL_KYC_DATA = {
+  maritalStatus: "",
+  fatherName: "",
+  motherName: "",
+  email: "",
+  income: "",
+  isIndianCitizen: false,
+  isIndianTaxResident: false,
+  isNotPoliticallyExpose: false,
+  panImage: "",
+  signImage: "",
+};

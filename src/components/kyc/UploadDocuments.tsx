@@ -2,7 +2,7 @@ import { useRef, useState } from "react";
 import Image from "next/image";
 
 interface UploadDocumentsProps {
-  handleInputs: () => void;
+  handleInputs: (e: React.ChangeEvent<HTMLInputElement>) => void;
 }
 
 interface DocumentsProps {
