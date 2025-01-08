@@ -59,19 +59,25 @@ Visit the hosted application: [ZFunds KYC App](https://zfundskyc.vercel.app/)
 
 ## Screenshots
 
-![image](https://github.com/sonukumar77/zfunds-kyc/blob/main/public/assets/images/sc1.png)
+![image](https://github.com/sonukumar77/zfunds-kyc/blob/master/public/assets/images/sc1.png)
 
 ---
 
-![image](https://github.com/sonukumar77/zfunds-kyc/blob/main/public/assets/images/sc2.png)
+![image](https://github.com/sonukumar77/zfunds-kyc/blob/master/public/assets/images/sc2.png)
 
 ---
 
-## ![image](https://github.com/sonukumar77/zfunds-kyc/blob/main/public/assets/images/sc3.png)
+![image](https://github.com/sonukumar77/zfunds-kyc/blob/master/public/assets/images/sc3.png)
 
-## ![image](https://github.com/sonukumar77/zfunds-kyc/blob/main/public/assets/images/sc4.png)
+---
 
-![image](https://github.com/sonukumar77/zfunds-kyc/blob/main/public/assets/images/sc5.png)
+![image](https://github.com/sonukumar77/zfunds-kyc/blob/master/public/assets/images/sc4.png)
+
+---
+
+![image](https://github.com/sonukumar77/zfunds-kyc/blob/master/public/assets/images/sc5.png)
+
+---
 
 ## Project Structure
 
