@@ -7,14 +7,50 @@ import {
 import InputBox from "../base/InputBox";
 import Button from "../base/Button";
 import { INITIAL_KYC_DATA_Props } from "@/models/kyc";
-import React from "react";
+import React, { useState } from "react";
 
 interface PersonalDetailsProps {
   inputData: INITIAL_KYC_DATA_Props | null;
   handleInputs: (e: React.ChangeEvent<HTMLInputElement>) => void;
+  setInputData: React.Dispatch<
+    React.SetStateAction<INITIAL_KYC_DATA_Props | null>
+  >;
 }
 
-const PersonalDetails = ({ inputData, handleInputs }: PersonalDetailsProps) => {
+const PersonalDetails = ({
+  inputData,
+  handleInputs,
+  setInputData,
+}: PersonalDetailsProps) => {
+  const [currentDomainIndex, setCurrentDomainIndex] = useState(0);
+
+  const handleDomain = (domain: string, index: number) => {
+    setCurrentDomainIndex(index);
+    if (!inputData || !inputData?.email) {
+      return;
+    }
+    const currentEmail = inputData?.email;
+    const baseEmail = currentEmail.split("@")[0];
+    const completeEmail = baseEmail.concat(domain);
+
+    setInputData((prev) => {
+      if (!prev) return null;
+      return {
+        ...prev,
+        email: completeEmail,
+        maritalStatus: prev.maritalStatus || "",
+        fatherName: prev.fatherName || "",
+        motherName: prev.motherName || "",
+        income: prev.income || "",
+        isIndianCitizen: prev.isIndianCitizen ?? false,
+        isIndianTaxResident: prev.isIndianTaxResident ?? false,
+        isNotPoliticallyExpose: prev.isNotPoliticallyExpose ?? false,
+        panImage: prev.panImage || "",
+        signImage: prev.signImage || "",
+      };
+    });
+  };
+
   if (!inputData) {
     return <div>Loading...</div>;
   }
@@ -60,8 +96,12 @@ const PersonalDetails = ({ inputData, handleInputs }: PersonalDetailsProps) => {
             <Button
               btnText={domain}
               key={i}
-              onBtnClick={() => null}
-              btnStyle="p-1 bg-white border border-primary-100 text-primary-100 p-0 rounded-lg"
+              onBtnClick={() => handleDomain(domain, i)}
+              btnStyle={`p-1 border-primary-100 p-0 rounded-lg bg-primary-100 ${
+                currentDomainIndex === i
+                  ? "bg-primary-100 text-white"
+                  : "bg-white border text-primary-100"
+              }`}
             />
           ))}
         </div>

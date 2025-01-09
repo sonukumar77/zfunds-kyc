@@ -31,9 +31,9 @@ export const ImagePlaceholder = ({
         <Image src={imageUrl} width="100" height="100" alt={altText} />
       ) : (
         <div className="w-full h-full bg-gray-100 rounded relative">
-          <span className="w-4 h-4 text-white flex justify-center items-center content-center cursor-pointer absolute right-0 top-0 bg-green-100 rounded-full transform translate-x-1/2 -translate-y-1/2">
-            x
-          </span>
+          <div className="w-4 h-4 text-white flex justify-center items-center cursor-pointer absolute right-0 top-0 bg-green-100 rounded-full translate-x-1/2 -translate-y-1/2">
+            <span className="text-xs">x</span>
+          </div>
         </div>
       )}
     </div>

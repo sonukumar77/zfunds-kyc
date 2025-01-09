@@ -1,3 +1,4 @@
+export const IS_EDIT_OPEN = true;
 export const MARITAL_STATUS_LIST = [
   { value: "male", label: "Male" },
   { value: "female", label: "Female" },

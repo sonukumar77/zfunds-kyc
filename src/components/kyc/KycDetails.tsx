@@ -8,6 +8,9 @@ import { INITIAL_KYC_DATA_Props } from "@/models/kyc";
 
 interface KycDetailsProps {
   inputData: INITIAL_KYC_DATA_Props | null;
+  handleEdit: (index: number) => void;
+  isChecked: boolean;
+  setIsChecked: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
 interface RowProps {
@@ -29,11 +32,14 @@ const List = ({ arrList }: ListProps) => {
   );
 };
 
-const KycDetails = ({ inputData }: KycDetailsProps) => {
-  const [isChecked, setIsChecked] = useState(false);
-
+const KycDetails = ({
+  inputData,
+  handleEdit,
+  isChecked,
+  setIsChecked,
+}: KycDetailsProps) => {
   if (!inputData) {
-    return <div>Loading...</div>; // Or handle accordingly
+    return <div>Loading...</div>;
   }
 
   const {
@@ -62,18 +68,18 @@ const KycDetails = ({ inputData }: KycDetailsProps) => {
           <List arrList={FAKE_USER_DATA.personalDetails} />
         </div>
       </Card>
-      <Card cardHeaderTitle="KYC Details">
+      <Card cardHeaderTitle="KYC Details" handleEdit={handleEdit} editIndex={0}>
         <RowData title="Email" value={email} />
         <div className="flex justify-between">
           <RowData title="Marital Status" value={maritalStatus} />
-          <RowData title="Annual Income" value={income} />
+          <RowData title="Annual Income" value={findIncomeLabel(income)} />
         </div>
         <div className="flex justify-between pb-2">
           <RowData title="Father's Name" value={fatherName} />
           <RowData title="Mother's Name" value={motherName} />
         </div>
       </Card>
-      <Card cardHeaderTitle="Documents">
+      <Card cardHeaderTitle="Documents" handleEdit={handleEdit} editIndex={1}>
         <div className="py-2 flex justify-between items-center p-2">
           <div className="flex justify-center items-center flex-col gap-2">
             <p>Photo</p>
@@ -88,7 +94,7 @@ const KycDetails = ({ inputData }: KycDetailsProps) => {
               <p>PAN</p>
               <ImagePlaceholder
                 imageUrl={panImage}
-                altText="PAn Image"
+                altText="Pan Image"
                 containerStyle="m-0"
               />
             </div>
@@ -108,9 +114,9 @@ const KycDetails = ({ inputData }: KycDetailsProps) => {
       <div className="flex items-center">
         <input
           type="checkbox"
-          className="w-4 h-4 cheecked:bg-green-100"
+          className="w-4 h-4 cheecked:bg-green-100 cursor-pointer"
           checked={isChecked}
-          onChange={() => setIsChecked((prev) => !prev)}
+          onChange={() => setIsChecked((prev: boolean) => !prev)}
         />
         <label htmlFor="" className="text-primary-10 ml-2">
           I agree to the
